@@ -17,13 +17,13 @@ var firebaseConfig = {
 
   $("#add-train-btn").on("click", function() {
 
-    // Grabs user input
+    // take values from the form
     var trainName = $("#train-name-input").val().trim();
     var destination = $("#destination-input").val().trim();
     var firstTrain = $("#first-train-input").val().trim();
     var frequency = $("#frequency-input").val().trim();
   
-    // Creates local "temporary" object for holding train data
+    // object to hold the form data
     var newTrain = {
   
       name: trainName,
@@ -41,10 +41,9 @@ var firebaseConfig = {
     console.log(newTrain.firstTrain);
     console.log(newTrain.frequency);
   
-    // Alert
-    alert("Train successfully added");
+    
   
-    // Clears all of the text-boxes
+    // Clears all form fields
     $("#train-name-input").val("");
     $("#destination-input").val("");
     $("#first-train-input").val("");
@@ -86,8 +85,7 @@ var firebaseConfig = {
       // To calculate the arrival time, add the tMinutes to the current time
       tArrival = moment().add(tMinutes, "m").format("hh:mm A");
     }
-    console.log("tMinutes:", tMinutes);
-    console.log("tArrival:", tArrival);
+    
   
     // Add each train's data into the table
     $("#train-table").append("<tr><td>" + tName + "</td><td>" + tDestination + "</td><td>" +

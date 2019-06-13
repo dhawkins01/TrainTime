@@ -1,5 +1,6 @@
 body {
     background-color: darkslateblue;
+    background-image: url("../images/bg.jpg");
 }
 
 .header {
