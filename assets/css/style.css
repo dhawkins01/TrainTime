@@ -1,0 +1,12 @@
+body {
+    background-color: darkslateblue;
+}
+
+.header {
+    padding: 40px;
+    margin: 40px 0;
+}
+
+.section {
+    margin: 40px 0;
+}
