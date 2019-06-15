@@ -17,11 +17,11 @@ var firebaseConfig = {
 
   $("#add-train-btn").on("click", function() {
 
-    // take values from the form
-    var trainName = $("#train-name-input").val().trim();
-    var destination = $("#destination-input").val().trim();
-    var firstTrain = $("#first-train-input").val().trim();
-    var frequency = $("#frequency-input").val().trim();
+    // take input from the form and store locally
+    var trainName = $("#train-name").val().trim();
+    var destination = $("#destination").val().trim();
+    var firstTrain = $("#first-train").val().trim();
+    var frequency = $("#frequency").val().trim();
   
     // object to hold the form data
     var newTrain = {
@@ -44,16 +44,16 @@ var firebaseConfig = {
     
   
     // Clears all form fields
-    $("#train-name-input").val("");
-    $("#destination-input").val("");
-    $("#first-train-input").val("");
-    $("#frequency-input").val("");
+    $("#train-name").val("");
+    $("#destination").val("");
+    $("#first-train").val("");
+    $("#frequency").val("");
   
     // Determine when the next train arrives.
     return false;
   });
   
-  // 4. Create Firebase event for adding trains to the database and a row in the html when a user adds an entry
+  // adds to the database when form is filled out
   database.ref().on("child_added", function(childSnapshot, prevChildKey) {
   
     console.log(childSnapshot.val());
@@ -76,9 +76,7 @@ var firebaseConfig = {
       tMinutes = trainTime.diff(moment(), "minutes");
     } else {
   
-      // Calculate the minutes until arrival using hardcore math
-      // To calculate the minutes till arrival, take the current time in unix subtract the FirstTrain time
-      // and find the modulus between the difference and the frequency.
+      // figure out minutes till arrival
       var differenceTimes = moment().diff(trainTime, "minutes");
       var tRemainder = differenceTimes % tFrequency;
       tMinutes = tFrequency - tRemainder;
